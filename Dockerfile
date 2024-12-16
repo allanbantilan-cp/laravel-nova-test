@@ -1,4 +1,4 @@
-FROM coreproc/laravel-php:8.2-fpm as php
+FROM coreproc/laravel-php:8.3-fpm as php
 
 # Set environment variables to non-interactive (this prevents some prompts)
 ENV DEBIAN_FRONTEND=non-interactive
@@ -29,6 +29,10 @@ RUN apt-get update -y \
     && npm install -g npm \
     && mkdir /var/www/.npm \
     && chown -R www-data:www-data /var/www/.npm
+
+# Install Git 
+RUN apt-get update -y \ 
+    && apt-get install -y git
 
 # Check versions
 RUN php -v
